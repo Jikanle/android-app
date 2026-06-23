@@ -1,4 +1,4 @@
-package com.aimedic.jikanle
+package co.com.jikanle
 
 import org.junit.Test
 
