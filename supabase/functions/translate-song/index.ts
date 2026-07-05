@@ -22,7 +22,7 @@ import {
 
 const allowedOrigins = new Set(
   (Deno.env.get("ALLOWED_ORIGINS") ??
-    "https://jikanle.com.co,https://www.jikanle.com.co")
+    "https://jikanle.com.co,https://www.jikanle.com.co,https://jikanle-website.vercel.app,https://jikanle-website-alejandrosanchezpoveda-asperjasp.vercel.app")
     .split(",").map((origin) => origin.trim()).filter(Boolean),
 );
 function corsHeaders(request: Request): Record<string, string> {
