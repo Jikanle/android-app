@@ -50,7 +50,10 @@ async function persistSource(source: Record<string, unknown>): Promise<void> {
     },
   );
   if (!response.ok) {
-    throw new Error(`song_sources upsert failed (${response.status})`);
+    const detail = (await response.text()).slice(0, 300);
+    throw new Error(
+      `song_sources upsert failed (${response.status}): ${detail}`,
+    );
   }
 }
 
@@ -73,7 +76,20 @@ Deno.serve(async (request) => {
       (Deno.env.get("DIRECT_AUDIO_ALLOWED_HOSTS") ?? "media.jikanle.com.co")
         .split(",").map((host) => host.trim()).filter(Boolean);
     const source = await resolveSongSource(input, { directAudioHosts });
-    await persistSource(source as unknown as Record<string, unknown>);
+    try {
+      await persistSource(source as unknown as Record<string, unknown>);
+    } catch (storageError) {
+      console.error("song source persistence failed", {
+        provider: source.provider,
+        source_id: source.source_id,
+        message: storageError instanceof Error
+          ? storageError.message
+          : "unknown error",
+      });
+      source.warnings.push(
+        "Source metadata was resolved but could not yet be stored; retry after applying the song_sources migration.",
+      );
+    }
     return json(request, source, 200);
   } catch (error) {
     if (error instanceof ResolverError) {
