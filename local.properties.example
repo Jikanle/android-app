@@ -1,0 +1,5 @@
+# Copy to local.properties and fill values locally. Do not commit local.properties.
+supabase.url=https://<project>.supabase.co
+supabase.anon.key=<anon_key>
+google.oauth.client_id=<web_client_id>
+sdk.dir=<android_sdk_path>

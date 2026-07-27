@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+.claude/
+HANDOFF.md
+supabase/.temp/
+*.keystore
+*.jks
+google-services.json
