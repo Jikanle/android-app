@@ -15,7 +15,22 @@ val localProps = Properties().apply {
     val f = rootProject.file("local.properties")
     if (f.exists()) f.inputStream().use { load(it) }
 }
-fun secret(key: String): String = (localProps.getProperty(key) ?: "").trim()
+fun secret(vararg keys: String): String =
+    keys.firstNotNullOfOrNull { key ->
+        localProps.getProperty(key)?.trim()?.takeIf(String::isNotEmpty)
+            ?: System.getenv(key.replace('.', '_').uppercase())?.trim()?.takeIf(String::isNotEmpty)
+    } ?: ""
+
+val releaseKeystorePath = System.getenv("SIGNING_KEYSTORE_PATH").orEmpty()
+val releaseKeyAlias = System.getenv("SIGNING_KEY_ALIAS").orEmpty()
+val releaseKeyPassword = System.getenv("SIGNING_KEY_PASSWORD").orEmpty()
+val releaseStorePassword = System.getenv("SIGNING_STORE_PASSWORD").orEmpty()
+val hasReleaseSigning = listOf(
+    releaseKeystorePath,
+    releaseKeyAlias,
+    releaseKeyPassword,
+    releaseStorePassword,
+).all { it.isNotBlank() }
 
 android {
     namespace = "co.com.jikanle"
@@ -34,13 +49,28 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "SUPABASE_URL", "\"${secret("SUPABASE_URL")}\"")
-        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${secret("SUPABASE_ANON_KEY")}\"")
+        buildConfigField("String", "SUPABASE_URL", "\"${secret("supabase.url", "SUPABASE_URL")}\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"${secret("supabase.anon.key", "SUPABASE_ANON_KEY")}\"")
+        buildConfigField("String", "GOOGLE_OAUTH_CLIENT_ID", "\"${secret("google.oauth.client_id", "GOOGLE_OAUTH_CLIENT_ID")}\"")
+    }
+
+    signingConfigs {
+        create("release") {
+            if (hasReleaseSigning) {
+                storeFile = file(releaseKeystorePath)
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -54,6 +84,11 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+    sourceSets {
+        getByName("main") {
+            assets.directories.add(rootProject.file("data/seed").path)
+        }
     }
 }
 
