@@ -18,11 +18,23 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.Jikanle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- OAuth callback: jikanle://auth-callback (must match SupabaseModule's Auth
+                 scheme/host and the Supabase dashboard Redirect URLs allowlist). -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="jikanle" android:host="auth-callback" />
             </intent-filter>
 
             <!-- Custom-scheme deep links: jikanle://lesson/{id}, room/{id}, event/{id} -->
