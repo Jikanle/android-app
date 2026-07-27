@@ -1,0 +1,124 @@
+{
+  "id": "seed-fuyu-no-hanashi",
+  "song": {
+    "title_original": "冬のはなし",
+    "title_romanized": "Fuyu no Hanashi",
+    "artist": "Centimillimental",
+    "language": "ja",
+    "context": "From the anime Given (2019)",
+    "duration_ms": 260000
+  },
+  "creator": {
+    "display_name": "Alejandro",
+    "role": "host"
+  },
+  "language_target": "ja",
+  "language_explanation": "es",
+  "level": "intermediate",
+  "slide_deck": {
+    "slides": [
+      {
+        "type": "intro",
+        "title": "Fuyu no Hanashi",
+        "subtitle": "Centimillimental · 冬のはなし",
+        "notes_es": "Cancion melancolica sobre memoria, distancia y la presencia de alguien que ya no esta. Registro de mono no aware.",
+        "notes_en": "Melancholic song about memory, distance, and the lingering presence of someone gone. Register of mono no aware."
+      },
+      {
+        "type": "listen_first",
+        "instruction_es": "Escucha sin traduccion. Solo siente que evoca.",
+        "instruction_en": "Listen without translation. Just feel what it evokes."
+      },
+      {
+        "type": "vocabulary",
+        "items": [
+          {
+            "surface": "冬",
+            "reading": "ふゆ",
+            "meaning_es": "invierno",
+            "meaning_en": "winter"
+          },
+          {
+            "surface": "はなし",
+            "reading": "はなし",
+            "meaning_es": "historia, conversacion",
+            "meaning_en": "story, talk"
+          },
+          {
+            "surface": "涙",
+            "reading": "なみだ",
+            "meaning_es": "lagrima",
+            "meaning_en": "tear"
+          },
+          {
+            "surface": "君",
+            "reading": "きみ",
+            "meaning_es": "tu (intimo)",
+            "meaning_en": "you (intimate)"
+          },
+          {
+            "surface": "忘れる",
+            "reading": "わすれる",
+            "meaning_es": "olvidar",
+            "meaning_en": "to forget"
+          },
+          {
+            "surface": "季節",
+            "reading": "きせつ",
+            "meaning_es": "estacion",
+            "meaning_en": "season"
+          },
+          {
+            "surface": "声",
+            "reading": "こえ",
+            "meaning_es": "voz",
+            "meaning_en": "voice"
+          },
+          {
+            "surface": "遠い",
+            "reading": "とおい",
+            "meaning_es": "lejano",
+            "meaning_en": "distant"
+          }
+        ]
+      },
+      {
+        "type": "grammar",
+        "pattern": "〜たら",
+        "title_es": "Condicional temporal",
+        "title_en": "Temporal conditional",
+        "body_es": "El patron indica 'cuando/si'. Uso natural en canciones de memoria.",
+        "body_en": "Marks 'when/if'. Naturally used in memory songs."
+      },
+      {
+        "type": "cultural",
+        "title": "Mono no aware · 物の哀れ",
+        "body_es": "Concepto estetico japones: la belleza melancolica de lo transitorio. La cancion encarna esto directamente.",
+        "body_en": "Japanese aesthetic concept: the melancholy beauty of transience. The song embodies this directly."
+      },
+      {
+        "type": "discussion",
+        "prompts_es": [
+          "Cual es tu historia de invierno?",
+          "Hay palabras en espanol o ingles que solo funcionan cuando hace frio?",
+          "Que cancion tuya se parece emocionalmente a esta?"
+        ],
+        "prompts_en": [
+          "What is your winter story?",
+          "Are there Spanish or English words that only work in the cold?",
+          "Which of your songs feels emotionally close to this one?"
+        ]
+      },
+      {
+        "type": "listen_second",
+        "instruction_es": "Segunda escucha, con letras. Nota que palabras del vocabulario reconoces.",
+        "instruction_en": "Second listen, with lyrics. Notice which vocabulary you recognize."
+      },
+      {
+        "type": "outro",
+        "next_es": "Comparte tu 'historia de invierno' en la sala. La proxima cancion se elegira con lo que escuchemos.",
+        "next_en": "Share your 'winter story' in the room. The next song will be chosen from what we hear."
+      }
+    ]
+  }
+}
