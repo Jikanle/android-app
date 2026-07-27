@@ -1,0 +1,47 @@
+name: Android Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Decode signing keystore
+        run: |
+          echo "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" | base64 --decode > release.keystore
+
+      - name: Write CI local.properties
+        run: |
+          {
+            echo "supabase.url=${{ secrets.SUPABASE_URL }}"
+            echo "supabase.anon.key=${{ secrets.SUPABASE_ANON_KEY }}"
+            echo "google.oauth.client_id=${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}"
+          } > local.properties
+
+      - name: Bundle release
+        env:
+          SIGNING_KEYSTORE_PATH: ${{ github.workspace }}/release.keystore
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+        run: ./gradlew :app:bundleRelease
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jikanle-release-aab
+          path: app/build/outputs/bundle/release/*.aab
+          if-no-files-found: error

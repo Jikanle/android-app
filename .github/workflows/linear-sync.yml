@@ -1,0 +1,18 @@
+name: Linear Reference
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  require-linear-reference:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require JIK issue reference
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.pull_request.body || "";
+            if (!/\bJIK-\d+\b/.test(body)) {
+              core.setFailed("PR body must include a Linear issue reference such as JIK-42.");
+            }

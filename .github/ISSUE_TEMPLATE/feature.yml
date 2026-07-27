@@ -1,0 +1,26 @@
+name: Feature
+description: Propose a product or platform change
+title: "feat: "
+labels: ["android"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What continuity problem does this solve for people from the room?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What is included and explicitly excluded?
+    validations:
+      required: true
+  - type: input
+    id: linear
+    attributes:
+      label: Linear Issue
+      placeholder: JIK-42
+    validations:
+      required: true
