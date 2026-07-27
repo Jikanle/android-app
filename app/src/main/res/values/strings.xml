@@ -1,3 +1,59 @@
 <resources>
     <string name="app_name">Jikanle</string>
+    <string name="app_wordmark">乐 Jikanle</string>
+    <string name="logo_mark">乐</string>
+    <string name="jikanle_wordmark">乐 JIKANLE · SONGBRIDGE</string>
+    <string name="source_language">Origen · %1$s</string>
+    <string name="local_demo_source">Demo local de respaldo</string>
+    <string name="supabase_demo_todo">Esta vista cambia a las tablas compartidas de Supabase cuando el backend este desplegado.</string>
+    <string name="lyrics_label">ORIGINAL + TRADUCCION</string>
+    <string name="lyrics_title">Una melodia, otra voz.</string>
+    <string name="singability_label">CANTO / ALINEACION</string>
+    <string name="vocabulary_label">PALABRAS PARA LLEVAR</string>
+    <string name="vocabulary_title">Un vocabulario pequeno de la cancion.</string>
+    <string name="songbridge_error">No se pudo cargar la cancion demo.</string>
+    <string name="retry">Reintentar</string>
+    <string name="profile_nav">Perfil</string>
+    <string name="auth_nav">Entrar</string>
+    <string name="sign_out">Salir</string>
+    <string name="lesson_loading">Cargando la leccion...</string>
+    <string name="lesson_empty">Aun no hay leccion disponible.</string>
+    <string name="lesson_first_listen_play">Primera escucha</string>
+    <string name="lesson_second_listen_play">Segunda escucha</string>
+    <string name="lesson_second_listen_with_lyrics">Ahora con la letra.</string>
+    <string name="lesson_second_listen_without_lyrics">Sin letra.</string>
+    <string name="lesson_seconds_range">%1$d s - %2$d s</string>
+    <string name="slide_label_intro">時間 / INTRO</string>
+    <string name="slide_label_first_listen">出会い / PRIMERA ESCUCHA</string>
+    <string name="slide_label_vocabulary">乐 / VOCABULARIO</string>
+    <string name="slide_label_grammar">乐 / GRAMATICA</string>
+    <string name="slide_label_lyric_focus">乐 / LETRA EN FOCO</string>
+    <string name="slide_label_cultural">続き / CULTURA</string>
+    <string name="slide_label_discussion">続き / CONVERSEMOS</string>
+    <string name="slide_label_second_listen">次 / SEGUNDA ESCUCHA</string>
+    <string name="slide_label_outro">次 / CIERRE</string>
+    <string name="auth_join_title">Unete a la sala.</string>
+    <string name="auth_welcome_title">Bienvenido a la sala.</string>
+    <string name="auth_anchor_copy">時間 / 出会い / 乐 - tiempo, encuentro, musica.</string>
+    <string name="auth_email_label">Correo</string>
+    <string name="auth_password_label">Contrasena</string>
+    <string name="auth_create_account">Crear cuenta</string>
+    <string name="auth_sign_in">Entrar</string>
+    <string name="auth_existing_account">Ya tienes cuenta? Entra</string>
+    <string name="auth_new_account">Eres nuevo? Crea tu cuenta</string>
+    <string name="auth_continue_google">Continuar con Google</string>
+    <string name="auth_error_provider">No se pudo abrir el proveedor.</string>
+    <string name="auth_error_email_password">Ingresa un correo y una contrasena de 6 o mas caracteres.</string>
+    <string name="auth_error_generic">Algo salio mal.</string>
+    <string name="auth_account_created">Cuenta creada. Si el correo requiere confirmacion, revisalo.</string>
+    <string name="profile_anchor">続き / PERFIL</string>
+    <string name="profile_title">Tu punto de encuentro</string>
+    <string name="profile_body">Estos tags preparan el futuro matching entre personas que quieren seguir hablando despues del evento.</string>
+    <string-array name="profile_hobby_tags">
+        <item>violin</item>
+        <item>anime</item>
+        <item>japones</item>
+        <item>canciones tristes</item>
+        <item>Bogota</item>
+    </string-array>
 </resources>

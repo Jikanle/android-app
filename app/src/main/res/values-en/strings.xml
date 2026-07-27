@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Jikanle</string>
+    <string name="app_wordmark">乐 Jikanle</string>
+    <string name="logo_mark">乐</string>
+    <string name="jikanle_wordmark">乐 JIKANLE · SONGBRIDGE</string>
+    <string name="source_language">Source · %1$s</string>
+    <string name="local_demo_source">Local fallback demo</string>
+    <string name="supabase_demo_todo">This view switches to the shared Supabase tables once the backend is deployed.</string>
+    <string name="lyrics_label">ORIGINAL + TRANSLATION</string>
+    <string name="lyrics_title">One melody, another voice.</string>
+    <string name="singability_label">SINGABILITY / ALIGNMENT</string>
+    <string name="vocabulary_label">WORDS TO CARRY HOME</string>
+    <string name="vocabulary_title">A small vocabulary from the song.</string>
+    <string name="songbridge_error">The demo song could not be loaded.</string>
+    <string name="retry">Try again</string>
+    <string name="profile_nav">Profile</string>
+    <string name="auth_nav">Sign in</string>
+    <string name="sign_out">Sign out</string>
+    <string name="lesson_loading">Loading the lesson...</string>
+    <string name="lesson_empty">No lesson is available yet.</string>
+    <string name="lesson_first_listen_play">First listen</string>
+    <string name="lesson_second_listen_play">Second listen</string>
+    <string name="lesson_second_listen_with_lyrics">Now with lyrics.</string>
+    <string name="lesson_second_listen_without_lyrics">Without lyrics.</string>
+    <string name="lesson_seconds_range">%1$d s - %2$d s</string>
+    <string name="slide_label_intro">時間 / INTRO</string>
+    <string name="slide_label_first_listen">出会い / FIRST LISTEN</string>
+    <string name="slide_label_vocabulary">乐 / VOCABULARY</string>
+    <string name="slide_label_grammar">乐 / GRAMMAR</string>
+    <string name="slide_label_lyric_focus">乐 / LYRIC FOCUS</string>
+    <string name="slide_label_cultural">続き / CULTURE</string>
+    <string name="slide_label_discussion">続き / DISCUSSION</string>
+    <string name="slide_label_second_listen">次 / SECOND LISTEN</string>
+    <string name="slide_label_outro">次 / CLOSE</string>
+    <string name="auth_join_title">Join the room.</string>
+    <string name="auth_welcome_title">Welcome to the room.</string>
+    <string name="auth_anchor_copy">時間 / 出会い / 乐 - time, encounter, music.</string>
+    <string name="auth_email_label">Email</string>
+    <string name="auth_password_label">Password</string>
+    <string name="auth_create_account">Create account</string>
+    <string name="auth_sign_in">Sign in</string>
+    <string name="auth_existing_account">Already have an account? Sign in</string>
+    <string name="auth_new_account">New here? Create your account</string>
+    <string name="auth_continue_google">Continue with Google</string>
+    <string name="auth_error_provider">The provider could not be opened.</string>
+    <string name="auth_error_email_password">Enter an email and a password of 6 or more characters.</string>
+    <string name="auth_error_generic">Something went wrong.</string>
+    <string name="auth_account_created">Account created. If email confirmation is required, check your inbox.</string>
+    <string name="profile_anchor">続き / PROFILE</string>
+    <string name="profile_title">Your meeting point</string>
+    <string name="profile_body">These tags prepare future matching between people who want to keep talking after the event.</string>
+    <string-array name="profile_hobby_tags">
+        <item>violin</item>
+        <item>anime</item>
+        <item>Japanese</item>
+        <item>sad songs</item>
+        <item>Bogota</item>
+    </string-array>
+</resources>
