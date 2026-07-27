@@ -1,0 +1,42 @@
+{
+  "id": "a0000000-0000-4000-8000-000000000001",
+  "titleOriginal": "さくら さくら",
+  "titleRomanized": "Sakura Sakura",
+  "artist": "Traditional",
+  "sourceLanguage": "ja",
+  "lyrics": [
+    { "lineIndex": 0, "text": "さくら さくら", "transliteration": "sakura sakura" },
+    { "lineIndex": 1, "text": "野山も里も", "transliteration": "noyama mo sato mo" },
+    { "lineIndex": 2, "text": "見渡す限り", "transliteration": "miwatasu kagiri" },
+    { "lineIndex": 3, "text": "霞か雲か", "transliteration": "kasumi ka kumo ka" },
+    { "lineIndex": 4, "text": "朝日に匂う", "transliteration": "asahi ni niou" },
+    { "lineIndex": 5, "text": "さくら さくら", "transliteration": "sakura sakura" },
+    { "lineIndex": 6, "text": "花ざかり", "transliteration": "hanazakari" }
+  ],
+  "translations": [
+    { "targetLanguage": "es", "alignmentNote": "Las siete líneas conservan el pulso original con una diferencia máxima de una unidad.", "lines": [
+      { "lineIndex": 0, "text": "Cerezos, cerezos", "sourceUnits": 6, "targetUnits": 6 },
+      { "lineIndex": 1, "text": "Por campos y aldeas", "sourceUnits": 7, "targetUnits": 7 },
+      { "lineIndex": 2, "text": "Hasta el horizonte", "sourceUnits": 7, "targetUnits": 7 },
+      { "lineIndex": 3, "text": "¿Es niebla o son nubes?", "sourceUnits": 7, "targetUnits": 7 },
+      { "lineIndex": 4, "text": "Perfuman la luz del alba", "sourceUnits": 7, "targetUnits": 8 },
+      { "lineIndex": 5, "text": "Cerezos, cerezos", "sourceUnits": 6, "targetUnits": 6 },
+      { "lineIndex": 6, "text": "Flores en plenitud", "sourceUnits": 5, "targetUnits": 6 }
+    ] },
+    { "targetLanguage": "en", "alignmentNote": "All seven lines remain within one target unit of the Japanese source.", "lines": [
+      { "lineIndex": 0, "text": "Cherry blooms, cherry blooms", "sourceUnits": 6, "targetUnits": 6 },
+      { "lineIndex": 1, "text": "Through fields and villages", "sourceUnits": 7, "targetUnits": 6 },
+      { "lineIndex": 2, "text": "As far as the eye can see", "sourceUnits": 7, "targetUnits": 7 },
+      { "lineIndex": 3, "text": "Is that mist or clouds above?", "sourceUnits": 7, "targetUnits": 7 },
+      { "lineIndex": 4, "text": "Fragrant in the morning light", "sourceUnits": 7, "targetUnits": 7 },
+      { "lineIndex": 5, "text": "Cherry blooms, cherry blooms", "sourceUnits": 6, "targetUnits": 6 },
+      { "lineIndex": 6, "text": "Flowers in full bloom", "sourceUnits": 5, "targetUnits": 5 }
+    ] }
+  ],
+  "vocabulary": [
+    { "lineIndex": 0, "term": "さくら", "reading": "sakura", "meaning": "cherry blossom", "explanation": "A symbol of spring and impermanence in Japan." },
+    { "lineIndex": 1, "term": "野山", "reading": "noyama", "meaning": "fields and hills", "explanation": "A broad natural landscape outside the city." },
+    { "lineIndex": 3, "term": "霞", "reading": "kasumi", "meaning": "spring haze", "explanation": "A fine seasonal mist often used in poetry." },
+    { "lineIndex": 6, "term": "花ざかり", "reading": "hanazakari", "meaning": "full bloom", "explanation": "The moment when flowers are at their peak." }
+  ]
+}
