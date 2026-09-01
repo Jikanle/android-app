@@ -12,6 +12,14 @@
 - [ ] Week 1: Confirm GitHub Actions is green on `main`.
 - [ ] Week 1: Upload the first signed `.aab` to Play Console internal testing.
 
+### Project P1b: Direct APK Track (Pre-Play, Available Now)
+
+- [x] Week 1: Make `versionCode`/`versionName` env-driven so rebuilds register as updates.
+- [x] Week 1: Emit a signed `.apk` alongside the `.aab` and optionally publish a GitHub Release.
+- [x] Week 1: Document emulator, phone, and update-loop setup in `docs/beta-testing.md`.
+- [ ] Week 1: Configure the four `SIGNING_*` repository secrets.
+- [ ] Week 1: Dispatch the release workflow once and install the APK on the founder's phone.
+
 ### Project P2: Closed Testing With 12 Attendees From Casa Alternativa Event
 
 - [ ] Week 2: Import closed-test emails from Luma attendees.
@@ -52,6 +60,8 @@
 
 ## Next Session
 
+- Run on the physical phone and check `adb logcat` for a clean first launch.
+- Give the Songbridge route a navigation entry point.
 - Push the completed bootstrap commits to `main` if network credentials are available.
 - Replace downloadable font families with bundled `res/font/` files when `jikanle/brand` provides licensed font assets.
 - Move Supabase migrations and seed SQL into `jikanle/db` once that repository is ready.

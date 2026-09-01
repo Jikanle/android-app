@@ -1,11 +1,27 @@
 name: Android Release
 
+# Manual dispatch only. Produces two artifacts from one signed build:
+#   - .aab  -> uploaded by hand to Play Console (internal testing track)
+#   - .apk  -> attached to a GitHub Release so testers on the pre-Play track
+#              (Obtainium / direct download) get the update on their phones
 on:
   workflow_dispatch:
+    inputs:
+      version_name:
+        description: "Version name shown to testers (e.g. 0.2.0)"
+        required: true
+        default: "0.1.0"
+      publish_release:
+        description: "Attach the APK to a GitHub Release"
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   bundle:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,13 +47,17 @@ jobs:
             echo "google.oauth.client_id=${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}"
           } > local.properties
 
-      - name: Bundle release
+      - name: Build signed bundle and APK
         env:
           SIGNING_KEYSTORE_PATH: ${{ github.workspace }}/release.keystore
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
           SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-        run: ./gradlew :app:bundleRelease
+          # run_number is monotonic, so each dispatch outranks the build already
+          # installed on a tester's phone.
+          VERSION_CODE: ${{ github.run_number }}
+          VERSION_NAME: ${{ inputs.version_name }}
+        run: ./gradlew :app:bundleRelease :app:assembleRelease
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
@@ -45,3 +65,21 @@ jobs:
           name: jikanle-release-aab
           path: app/build/outputs/bundle/release/*.aab
           if-no-files-found: error
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jikanle-release-apk
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
+
+      - name: Publish GitHub Release with the APK
+        if: ${{ inputs.publish_release }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ inputs.version_name }}" \
+            app/build/outputs/apk/release/*.apk \
+            --title "Jikanle ${{ inputs.version_name }}" \
+            --notes "Build ${{ github.run_number }} from ${{ github.sha }}." \
+            --latest

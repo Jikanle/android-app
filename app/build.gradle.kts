@@ -21,6 +21,11 @@ fun secret(vararg keys: String): String =
             ?: System.getenv(key.replace('.', '_').uppercase())?.trim()?.takeIf(String::isNotEmpty)
     } ?: ""
 
+// Every tester build must outrank the one already on the phone, otherwise Android
+// refuses the install as a downgrade. CI passes the run number; local builds stay at 1.
+val appVersionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 1
+val appVersionName = System.getenv("VERSION_NAME")?.trim()?.takeIf(String::isNotEmpty) ?: "1.0"
+
 val releaseKeystorePath = System.getenv("SIGNING_KEYSTORE_PATH").orEmpty()
 val releaseKeyAlias = System.getenv("SIGNING_KEY_ALIAS").orEmpty()
 val releaseKeyPassword = System.getenv("SIGNING_KEY_PASSWORD").orEmpty()
@@ -44,8 +49,8 @@ android {
         applicationId = "co.com.jikanle"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = appVersionCode
+        versionName = appVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
