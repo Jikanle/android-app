@@ -27,9 +27,11 @@ AVD cannot be created from the terminal. Create it in the IDE:
 1. Android Studio → **View → Tool Windows → Device Manager** (or the phone icon in the
    right sidebar).
 2. **Add a new device → Create Virtual Device**.
-3. Pick **Pixel 8** (or any phone profile), then the **API 36** system image — that one
-   is already downloaded (`$ANDROID_HOME/system-images/android-36.1`), so choosing it
-   avoids a fresh multi-gigabyte download.
+3. Pick **Pixel 8** (or any phone profile), then — importantly — the system image
+   **API 36.1, Google Play, x86_64**. That exact variant is the only one already on disk
+   (`$ANDROID_HOME/system-images/android-36.1/google_apis_playstore/x86_64`, 2.4 GB).
+   Any other API level, ABI, or "Google APIs"-without-Play variant triggers a fresh
+   multi-gigabyte download.
 4. Finish, then press ▶ next to the AVD to boot it.
 5. With the emulator running, hit **Run ▶** in the toolbar (or `Shift+F10`).
 
@@ -67,8 +69,12 @@ That is the whole update loop: one command rebuilds and reinstalls over the prev
 build. Read the phone's runtime logs with:
 
 ```bash
-$HOME/Android/Sdk/platform-tools/adb logcat --pid=$(adb shell pidof -s co.com.jikanle)
+ADB="$HOME/Android/Sdk/platform-tools/adb"
+"$ADB" logcat --pid="$("$ADB" shell pidof -s co.com.jikanle)"
 ```
+
+(`adb` is not on this machine's `PATH`; either use the full path as above or add
+`$HOME/Android/Sdk/platform-tools` to `PATH`.)
 
 ### Wireless (no cable)
 
@@ -76,8 +82,9 @@ Android 11+, phone and PC on the same Wi-Fi. On the phone: **Developer options �
 Wireless debugging → Pair device with pairing code**, then:
 
 ```bash
-adb pair <IP>:<PAIRING-PORT>     # code from the phone screen
-adb connect <IP>:<DEBUG-PORT>    # the port shown on the Wireless debugging screen
+ADB="$HOME/Android/Sdk/platform-tools/adb"
+"$ADB" pair <IP>:<PAIRING-PORT>     # code from the phone screen
+"$ADB" connect <IP>:<DEBUG-PORT>    # the port shown on the Wireless debugging screen
 ```
 
 `installDebug` then works exactly the same with no cable attached.
@@ -121,8 +128,13 @@ build already on a tester's phone.
 
 Testers install [Obtainium](https://github.com/ImranR98/Obtainium), add
 `https://github.com/Jikanle/android-app`, and receive every new Release as an in-place
-update. This requires the four `SIGNING_*` secrets listed in `play-store-launch.md` to
-be configured in the repository first.
+update.
+
+**This track is not usable until the four `SIGNING_*` secrets listed in
+`play-store-launch.md` exist in the repository.** Without them Gradle would emit an
+unsigned APK, which Android refuses to install; the workflow therefore fails fast on a
+missing `SIGNING_KEY_ALIAS` and re-checks that no `*-unsigned.apk` reached the output
+directory.
 
 ### Play tester roster
 

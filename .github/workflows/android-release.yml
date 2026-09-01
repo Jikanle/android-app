@@ -35,6 +35,22 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      # Without these, `base64 --decode` of an empty secret still exits 0, Gradle
+      # silently drops the signing config, and assembleRelease emits
+      # app-release-unsigned.apk — which Android refuses to install. Fail here
+      # instead of shipping an uninstallable artifact to testers.
+      - name: Require signing secrets
+        run: |
+          missing=""
+          [ -n "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" ] || missing="$missing SIGNING_KEYSTORE_BASE64"
+          [ -n "${{ secrets.SIGNING_KEY_ALIAS }}" ]       || missing="$missing SIGNING_KEY_ALIAS"
+          [ -n "${{ secrets.SIGNING_KEY_PASSWORD }}" ]    || missing="$missing SIGNING_KEY_PASSWORD"
+          [ -n "${{ secrets.SIGNING_STORE_PASSWORD }}" ]  || missing="$missing SIGNING_STORE_PASSWORD"
+          if [ -n "$missing" ]; then
+            echo "::error::Missing repository secrets:$missing — see docs/play-store-launch.md"
+            exit 1
+          fi
+
       - name: Decode signing keystore
         run: |
           echo "${{ secrets.SIGNING_KEYSTORE_BASE64 }}" | base64 --decode > release.keystore
@@ -58,6 +74,14 @@ jobs:
           VERSION_CODE: ${{ github.run_number }}
           VERSION_NAME: ${{ inputs.version_name }}
         run: ./gradlew :app:bundleRelease :app:assembleRelease
+
+      # Belt and braces: prove the APK that reaches testers is actually signed.
+      - name: Reject unsigned APK
+        run: |
+          if ls app/build/outputs/apk/release/*-unsigned.apk >/dev/null 2>&1; then
+            echo "::error::assembleRelease produced an unsigned APK; signing config did not apply"
+            exit 1
+          fi
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
