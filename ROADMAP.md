@@ -8,7 +8,7 @@
 - [x] Week 1: Add product, brand, architecture, contribution, security, ADR, launch, and event docs.
 - [x] Week 1: Add CI, release, and Linear PR-reference workflows.
 - [x] Week 1: Add the Fuyu no Hanashi seed lesson as a bundled fallback.
-- [ ] Week 1: Push the bootstrap history to `main`.
+- [x] Week 1: Push the bootstrap history to `main`.
 - [ ] Week 1: Confirm GitHub Actions is green on `main`.
 - [ ] Week 1: Upload the first signed `.aab` to Play Console internal testing.
 
@@ -60,8 +60,8 @@
 
 ## Next Session
 
+- Confirm GitHub Actions on `main` after the latest push.
 - Run on the physical phone and check `adb logcat` for a clean first launch.
-- Give the Songbridge route a navigation entry point.
-- Push the completed bootstrap commits to `main` if network credentials are available.
+- Give the Songbridge route a polished navigation entry point if it remains in the MVP.
 - Replace downloadable font families with bundled `res/font/` files when `jikanle/brand` provides licensed font assets.
 - Move Supabase migrations and seed SQL into `jikanle/db` once that repository is ready.
