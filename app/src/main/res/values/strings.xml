@@ -18,6 +18,12 @@
     <string name="sign_out">Salir</string>
     <string name="lesson_loading">Cargando la leccion...</string>
     <string name="lesson_empty">Aun no hay leccion disponible.</string>
+    <string name="featured_anchor">時間 / CANCION DESTACADA</string>
+    <string name="featured_title">Fuyu queda como base. La temporada puede cambiar.</string>
+    <string name="featured_standard">leccion estandar</string>
+    <string name="featured_seasonal">preview estacional</string>
+    <string name="featured_song_meta">%1$s · %2$s · %3$s</string>
+    <string name="featured_policy_note">Las canciones comerciales muestran contexto y vocabulario curado. Audio y letra completa solo entran con permiso.</string>
     <string name="lesson_first_listen_play">Primera escucha</string>
     <string name="lesson_second_listen_play">Segunda escucha</string>
     <string name="lesson_second_listen_with_lyrics">Ahora con la letra.</string>

@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,6 +16,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -75,6 +76,7 @@ fun LessonReaderScreen(
                     contentPadding = androidx.compose.foundation.layout.PaddingValues(20.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
+                    item { FeaturedSongsPanel() }
                     item {
                         Text(current.title, style = JikanleTypography.display, color = MaterialTheme.colorScheme.onBackground)
                         current.description?.let {
@@ -87,6 +89,36 @@ fun LessonReaderScreen(
             refreshing -> CenteredNote(stringResource(R.string.lesson_loading))
             else -> CenteredNote(stringResource(R.string.lesson_empty))
         }
+    }
+}
+
+@Composable
+private fun FeaturedSongsPanel() {
+    OutlinedCard(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Label(stringResource(R.string.featured_anchor))
+            Text(
+                stringResource(R.string.featured_title),
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+            featuredSongs.forEach { song ->
+                FeaturedSongRow(song)
+            }
+            Muted(stringResource(R.string.featured_policy_note))
+        }
+    }
+}
+
+@Composable
+private fun FeaturedSongRow(song: FeaturedSong) {
+    val status = when (song.status) {
+        FeaturedSongStatus.StandardLesson -> stringResource(R.string.featured_standard)
+        FeaturedSongStatus.SeasonalPreview -> stringResource(R.string.featured_seasonal)
+    }
+    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+        AdaptiveText(song.title)
+        Muted(stringResource(R.string.featured_song_meta, song.artist, song.language, status))
     }
 }
 
