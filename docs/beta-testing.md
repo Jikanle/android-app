@@ -1,5 +1,7 @@
 # Running And Testing Jikanle
 
+Current beta instructions (2026-09-09): see [first install](beta-first-install.md). The founder now has a Play Console account. Navigation starts at Community/Events; Lesson and Account are reachable from the bottom bar. The release workflow requires an explicit increasing `version_code`; older machine/account notes below are historical.
+
 How to see the app on this machine, get it onto a phone, and keep that phone updated
 as development continues. Last checked: 2026-09-01.
 
@@ -138,9 +140,8 @@ directory.
 
 ### Play tester roster
 
-Blocked: the Play Console account does not exist yet (see the unchecked Founder
-Checklist in `play-store-launch.md` — $25 fee, identity verification, app entry). There
-is no track to add emails to until those are done.
+The founder confirms the Play Console account now exists. The app entry, signing
+configuration and first internal release still need verification. Follow `beta-first-install.md`.
 
 Accounts to enroll the moment the internal-testing track exists:
 

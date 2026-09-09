@@ -1,6 +1,6 @@
 # Play Store Launch Playbook
 
-Last checked: 2026-07-27.
+Current execution guide: `docs/beta-first-install.md` (2026-09-09). The account now exists per founder. The policy notes below were last checked during bootstrap and must be confirmed against the requirements shown in Play Console before production.
 
 Google Play currently requires new personal developer accounts to run a closed test with at least 12 opted-in testers for 14 consecutive days before applying for production access. Google says production-access review usually takes 7 days or less, but it may take longer. The target-API floor rises on 2026-08-31: new apps and updates must target Android 16/API 36 or higher. Jikanle already targets API 36. Android developer verification has a 2026-09-30 enforcement milestone for participating stores and countries, and Play developers should check app registration in Play Console.
 
@@ -55,4 +55,4 @@ GitHub release workflow secrets:
 - `SUPABASE_ANON_KEY`
 - `GOOGLE_OAUTH_CLIENT_ID`
 
-The manual-dispatch release workflow builds an `.aab` artifact only. Alejandro uploads the first internal-testing build manually. Fastlane `supply` can be added later.
+The manual-dispatch release workflow builds both `.aab` and `.apk` artifacts after tests/lint. It requires an explicit increasing version code, signing secrets and Supabase configuration. Alejandro uploads the AAB to internal testing; `publish_release=false` keeps the APK out of public GitHub Releases. Fastlane `supply` remains future work.
