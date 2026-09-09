@@ -11,12 +11,20 @@ Jikanle is a language-learning brand built on a simple belief: most hours people
 
 ## Sibling Repositories
 
-- `jikanle/web-app` — Next.js 14 and Supabase web client. Canonical backend contracts live there first.
-- `jikanle/brand` — logos, palette tokens, and typography files. Until it exists, this repo mirrors the locked palette in `BRANDING.md` and `core/design`.
-- `jikanle/db` — Supabase migrations, RLS policies, and seed data. Android consumes the schema; it does not own it.
-- `jikanle/lesson-content` — structured Lesson JSON and LRC files. Until it exists, `data/seed/fuyu_no_hanashi.json` is the bundled lesson seed.
-- `jikanle/research` — LAMIR paper and MIR experiments for the long-term aligner.
-- `jikanle/docs` — private founder notes, briefs, and playbooks.
+- `Jikanle/android-app` — this single Gradle app module, organized by Kotlin packages.
+- `Jikanle/Jikanle-Website` — shared Web client and event publishing surface.
+- `Jikanle/backend` — shared platform ownership; the business workspace exposes the current Android `supabase/` SQL under `backend/supabase/`.
+- `Jikanle/cultural-translation-research` — research repository identified by the founder; local experiments also live under `ml_models/songbridge/` in the business workspace.
+
+The business workspace aggregates projects and is not necessarily one Git repository. No new Music-Input, Music-output, Events, brand or database repositories are needed for this beta. See [team ownership](docs/beta-backlog.md).
+
+## Beta Status
+
+Current: public events and Luma entry, guided Fuyu lesson with local progress, optional authenticated usage metrics and queued rating feedback. Audio opens an external Spotify search. Android does not play, record or score audio. Songbridge remains a development route.
+
+Not yet verified: live auth, deployed beta SQL/RLS, physical-device UI or signed Play upload. Play Console account exists per founder. Start with [the first-install guide](docs/beta-first-install.md) and [the data contract](docs/beta-contract.md).
+
+Actual quality checks are Kotlin compilation, Android Lint and JUnit tests. `ktlintCheck` and `detekt` are currently empty placeholder tasks.
 
 ## Getting Started
 
@@ -42,7 +50,7 @@ export JAVA_HOME="$HOME/.local/share/JetBrains/Toolbox/apps/android-studio/jbr"
 app/                 Android application module.
 app/src/main/java/   Compose UI, ViewModels, data repositories, Room cache, Hilt modules.
 data/seed/           Bundled Lesson JSON used only as the first demo fallback.
-supabase/            Current shared schema/function drafts; canonical migrations move to jikanle/db.
+supabase/            Shared schema/functions, exposed through the business backend workspace.
 docs/decisions/      Architecture Decision Records.
 docs/                Play Store, event, and session handoff docs.
 build-logic/         Reserved for Gradle convention plugins as the repo modularizes.

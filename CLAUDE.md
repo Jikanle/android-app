@@ -32,6 +32,8 @@ When in doubt, ask: **"Does this make sense for the eight people who met at Casa
 
 ### Sibling repos
 
+Current mapping (2026-09-09): `Jikanle/Jikanle-Website`, `Jikanle/backend`, and the founder's research repo `Jikanle/cultural-translation-research`. The local business workspace links Android as `android_app/` and exposes its SQL through `backend/supabase/`. The names below are historical proposals, not repositories to create. See `docs/beta-backlog.md` before changing ownership.
+
 - `jikanle/web-app` — canonical web client and first source for backend contracts.
 - `jikanle/brand` — logo, color, and typography tokens.
 - `jikanle/db` — Supabase migrations, RLS policies, seed data.

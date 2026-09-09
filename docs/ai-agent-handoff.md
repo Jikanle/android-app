@@ -1,6 +1,6 @@
 # AI Agent Handoff
 
-Last updated: 2026-09-08.
+Last updated: 2026-09-09. Start with `docs/beta-first-install.md`, `docs/beta-contract.md` and `docs/beta-backlog.md`. Community/Events is now the start destination; Lesson and Account are bottom navigation entries. Lesson progress is local; opt-in authenticated metrics and explicit feedback have a bounded offline outbox. SQL deployment, signing secrets and device QA remain unverified. The earlier architecture below is historical context.
 
 ## Product Target
 

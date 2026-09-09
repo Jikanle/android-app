@@ -1,6 +1,8 @@
 # Jikanle Android Roadmap
 
-## Goal G1: Ship Jikanle Android To Play Store Production By Mid-August 2026
+## Goal G1: Validate An Instrumented Android Beta Before Setting A Production Date
+
+Updated 2026-09-09. The mid-August target is retired. Three concrete milestones and team responsibilities: `docs/beta-backlog.md`. The founder has a Play Console account; signing, device QA and live backend verification remain gates.
 
 ### Project P1: Bootstrap And Internal Testing Track
 
@@ -9,7 +11,7 @@
 - [x] Week 1: Add CI, release, and Linear PR-reference workflows.
 - [x] Week 1: Add the Fuyu no Hanashi seed lesson as a bundled fallback.
 - [x] Week 1: Push the bootstrap history to `main`.
-- [ ] Week 1: Confirm GitHub Actions is green on `main`.
+- [x] Week 1: Confirm bootstrap CI on `main` at `29b08e8`; the new beta commit needs its own CI run.
 - [ ] Week 1: Upload the first signed `.aab` to Play Console internal testing.
 
 ### Project P1b: Direct APK Track (Pre-Play, Available Now)
@@ -59,6 +61,10 @@
 - [ ] Week 17: Decide whether Android purchase handling belongs in this repo or waits for web checkout.
 
 ## Next Session
+
+- Complete `docs/beta-first-install.md`: signing secrets, beta SQL, founder email enrollment and the physical-device checklist.
+- Verify `docs/beta-contract.md` with two Supabase identities, then inspect `docs/beta-metrics.sql`.
+- Treat the older week labels below as historical sequencing, not calendar deadlines; current acceptance criteria live in `docs/beta-backlog.md`.
 
 - Confirm GitHub Actions on `main` after the latest push.
 - Run on the physical phone and check `adb logcat` for a clean first launch.

@@ -2,6 +2,10 @@
 
 ## Overview
 
+Beta update, 2026-09-09: the app remains one Gradle module. `feature/events` exposes the public calendar; `feature/lesson` renders a guided, locally resumable deck; `feature/profile/BetaScreen` owns optional metrics and rating UI. `BetaRepository` isolates observation delivery from learning content. `jikanle-beta.db` is independent from the disposable content cache and must not use destructive migrations.
+
+Current workspace ownership: SQL resides in Android's `supabase/`, exposed through local `backend/supabase/`. Web is `Jikanle/Jikanle-Website`. Earlier proposed `db`, `brand`, `web-app` and `lesson-content` repository names below are historical, not prerequisites. Research/Acervo delivers reviewed outputs; no new services or repositories are created for beta. Exact changed fields are in `docs/beta-contract.md`; the domain overview below is not a complete SQL specification.
+
 ```text
 Android app (Compose + ViewModels)
   |
