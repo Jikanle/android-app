@@ -4,11 +4,13 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import co.com.jikanle.core.data.local.dao.LessonDao
+import co.com.jikanle.core.data.local.dao.EventDao
 import co.com.jikanle.core.data.local.dao.ProfileDao
 import co.com.jikanle.core.data.local.dao.RoomDao
 import co.com.jikanle.core.data.local.dao.SongDao
 import co.com.jikanle.core.data.local.dao.VocabularyDao
 import co.com.jikanle.core.data.local.entity.LessonEntity
+import co.com.jikanle.core.data.local.entity.EventEntity
 import co.com.jikanle.core.data.local.entity.ProfileEntity
 import co.com.jikanle.core.data.local.entity.RoomEntity
 import co.com.jikanle.core.data.local.entity.SongEntity
@@ -25,8 +27,9 @@ import co.com.jikanle.core.data.local.entity.VocabularyEntity
         VocabularyEntity::class,
         RoomEntity::class,
         ProfileEntity::class,
+        EventEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = false,
 )
 @TypeConverters(Converters::class)
@@ -36,4 +39,5 @@ abstract class JikanleDatabase : RoomDatabase() {
     abstract fun vocabularyDao(): VocabularyDao
     abstract fun roomDao(): RoomDao
     abstract fun profileDao(): ProfileDao
+    abstract fun eventDao(): EventDao
 }

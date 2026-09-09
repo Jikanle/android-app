@@ -32,7 +32,8 @@ class SeedLessonDataSource @Inject constructor(
 ) {
     fun loadFuyuLesson(): Result<Lesson> = runCatching {
         val json = context.assets.open(FUYU_SEED_ASSET).bufferedReader().use { it.readText() }
-        AppJson.decodeFromString(SeedLesson.serializer(), json).toDomain()
+        val language = context.resources.configuration.locales[0].language
+        AppJson.decodeFromString(SeedLesson.serializer(), json).toDomain(language)
     }
 }
 
@@ -193,11 +194,12 @@ private data class SeedOutroSlide(
     )
 }
 
-private fun SeedLesson.toDomain(): Lesson {
+private fun SeedLesson.toDomain(language: String): Lesson {
+    val explanation = if (language == "en") "en" else "es"
     val slides = slideDeck.slides.mapIndexed { index, slide ->
-        slide.toDomain(index, languageExplanation)
+        slide.toDomain(index, explanation)
     }
-    val vocabulary = slideDeck.slides.flatMap { it.vocabulary(languageExplanation) }
+    val vocabulary = slideDeck.slides.flatMap { it.vocabulary(explanation) }
     return Lesson(
         id = id,
         songId = FUYU_SEED_SONG_ID,
@@ -205,7 +207,7 @@ private fun SeedLesson.toDomain(): Lesson {
         title = song.titleRomanized ?: song.titleOriginal,
         description = "${song.artist} · ${song.titleOriginal} · ${song.context}",
         languageTarget = languageTarget,
-        languageExplanation = languageExplanation,
+        languageExplanation = explanation,
         level = level.toLevel(),
         slideDeck = SlideDeck(slides),
         vocabularyPicks = vocabulary,

@@ -1,6 +1,9 @@
 package co.com.jikanle.core.di
 
 import co.com.jikanle.core.data.repository.AuthRepositoryImpl
+import co.com.jikanle.core.data.repository.BetaRepositoryImpl
+import co.com.jikanle.core.domain.repository.BetaRepository
+import co.com.jikanle.core.data.repository.EventRepositoryImpl
 import co.com.jikanle.core.data.repository.BundledTranslatedSongRepository
 import co.com.jikanle.core.data.repository.LessonRepositoryImpl
 import co.com.jikanle.core.data.repository.ProfileRepositoryImpl
@@ -8,6 +11,7 @@ import co.com.jikanle.core.data.repository.RoomRepositoryImpl
 import co.com.jikanle.core.data.repository.SongRepositoryImpl
 import co.com.jikanle.core.data.repository.VocabularyRepositoryImpl
 import co.com.jikanle.core.domain.repository.AuthRepository
+import co.com.jikanle.core.domain.repository.EventRepository
 import co.com.jikanle.core.domain.repository.LessonRepository
 import co.com.jikanle.core.domain.repository.ProfileRepository
 import co.com.jikanle.core.domain.repository.RoomRepository
@@ -26,7 +30,15 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
+    abstract fun bindBetaRepository(impl: BetaRepositoryImpl): BetaRepository
+
+    @Binds
+    @Singleton
     abstract fun bindAuthRepository(impl: AuthRepositoryImpl): AuthRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindEventRepository(impl: EventRepositoryImpl): EventRepository
 
     @Binds
     @Singleton

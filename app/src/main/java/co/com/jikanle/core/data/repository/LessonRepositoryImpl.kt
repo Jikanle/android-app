@@ -35,10 +35,10 @@ class LessonRepositoryImpl @Inject constructor(
 
     override fun observeLesson(id: String): Flow<Lesson?> =
         lessonDao.observeById(id).map { row ->
-            row?.toDomain() ?: if (id == FUYU_SEED_LESSON_ID) {
+            if (id == FUYU_SEED_LESSON_ID) {
                 seedLessonDataSource.loadFuyuLesson().getOrNull()
             } else {
-                null
+                row?.toDomain()
             }
         }
 

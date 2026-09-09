@@ -11,8 +11,8 @@ sealed interface AuthState {
 }
 
 /**
- * Auth against the shared Supabase project. Email/password works once "Confirm email" is
- * turned OFF in Supabase (the project currently has it ON).
+ * Auth against the shared Supabase project. When email confirmation is enabled,
+ * users confirm their email before signing in. Do not disable verification for release.
  *
  * OAuth (Google) launches a Custom Tab to the provider; the session comes back via
  * the `jikanle://auth-callback` deep link, which [co.com.jikanle.MainActivity] feeds to

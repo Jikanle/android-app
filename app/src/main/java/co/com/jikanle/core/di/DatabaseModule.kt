@@ -3,7 +3,10 @@ package co.com.jikanle.core.di
 import android.content.Context
 import androidx.room.Room
 import co.com.jikanle.core.data.local.JikanleDatabase
+import co.com.jikanle.core.data.local.BetaDatabase
+import co.com.jikanle.core.data.local.BetaDao
 import co.com.jikanle.core.data.local.dao.LessonDao
+import co.com.jikanle.core.data.local.dao.EventDao
 import co.com.jikanle.core.data.local.dao.ProfileDao
 import co.com.jikanle.core.data.local.dao.RoomDao
 import co.com.jikanle.core.data.local.dao.SongDao
@@ -18,6 +21,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
+
+    @Provides
+    @Singleton
+    fun provideBetaDatabase(@ApplicationContext context: Context): BetaDatabase =
+        Room.databaseBuilder(context, BetaDatabase::class.java, "jikanle-beta.db").build()
+
+    @Provides
+    fun provideBetaDao(database: BetaDatabase): BetaDao = database.betaDao()
 
     @Provides
     @Singleton
@@ -41,4 +52,7 @@ object DatabaseModule {
 
     @Provides
     fun provideProfileDao(database: JikanleDatabase): ProfileDao = database.profileDao()
+
+    @Provides
+    fun provideEventDao(database: JikanleDatabase): EventDao = database.eventDao()
 }
