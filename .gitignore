@@ -21,3 +21,7 @@ supabase/.temp/
 *.keystore
 *.jks
 google-services.json
+# Private research inputs, audio references, exports and participant data.
+research-local/
+__pycache__/
+*.pyc

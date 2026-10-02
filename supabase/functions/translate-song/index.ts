@@ -190,19 +190,16 @@ async function replaceTranslationLines(
 }
 
 function buildReport(lines: TranslatedLine[], src: Lang, tgt: Lang): string {
-  let within = 0;
   const rows = lines.map((l) => {
     const d = (l.target_units ?? 0) - (l.source_units ?? 0);
-    if (Math.abs(d) <= 1) within += 1;
     return `${l.source_units} | ${l.target_units} | ${
       d >= 0 ? "+" : ""
     }${d} | ${l.emotion} | ${l.target}`;
   });
-  const n = lines.length || 1;
   return `# ${src}->${tgt}\nSRC | TGT | Δ | EMOTION | TARGET\n${
     rows.join("\n")
   }\n` +
-    `|Δ|<=1 on ${within}/${n} (${Math.floor((100 * within) / n)}%)`;
+    `Text-only estimates in language-specific units. Not an audio alignment or singability score. Human linguistic and musical review required.`;
 }
 
 Deno.serve(async (request) => {
@@ -238,7 +235,7 @@ Deno.serve(async (request) => {
   const src = input.source_language;
   const tgt = input.target_language;
   if (!isLang(src) || !isLang(tgt)) {
-    return json(request, { error: "language must be ja|en|es|zh" }, 400);
+    return json(request, { error: "language must be ja|en|es|zh|pt" }, 400);
   }
   if (src === tgt) {
     return json(request, { error: "source and target must differ" }, 400);

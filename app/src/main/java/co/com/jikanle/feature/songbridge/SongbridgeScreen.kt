@@ -4,7 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AssistChip
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
@@ -22,9 +23,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import co.com.jikanle.BuildConfig
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -43,6 +44,9 @@ import co.com.jikanle.core.domain.model.TranslatedSongDemo
 @Composable
 fun SongbridgeScreen(viewModel: SongbridgeViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val importer = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        uri?.let { viewModel.importStudy(it.toString()) }
+    }
     when (val state = uiState) {
         SongbridgeUiState.Loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
         SongbridgeUiState.Error -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -51,23 +55,25 @@ fun SongbridgeScreen(viewModel: SongbridgeViewModel = hiltViewModel()) {
                 TextButton(onClick = viewModel::retry) { Text(stringResource(R.string.retry)) }
             }
         }
-        is SongbridgeUiState.Content -> SongbridgeContent(state.song)
+        is SongbridgeUiState.Content -> SongbridgeContent(state.song, state.translation, viewModel::selectLanguage) {
+            importer.launch("application/json")
+        }
     }
 }
 
 @Composable
-private fun SongbridgeContent(song: TranslatedSongDemo) {
-    var targetLanguage by remember { mutableStateOf("es") }
-    val translation = song.translations.firstOrNull { it.targetLanguage == targetLanguage }
-        ?: song.translations.firstOrNull()
-
+private fun SongbridgeContent(song: TranslatedSongDemo, translation: DemoTranslation, onSelectLanguage: (String) -> Unit, onImport: () -> Unit) {
     LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(bottom = 40.dp)) {
         item { DemoHeader(song) }
+        if (BuildConfig.DEBUG) {
+            item { TextButton(onClick = onImport, modifier = Modifier.padding(horizontal = 20.dp)) {
+                Text(stringResource(R.string.songbridge_import))
+            } }
+        }
         item {
             Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 18.dp)) {
-                AssistChip(onClick = {}, label = { Text(stringResource(R.string.local_demo_source)) })
                 Text(
-                    text = stringResource(R.string.supabase_demo_todo),
+                    text = stringResource(R.string.songbridge_study_note),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -75,21 +81,22 @@ private fun SongbridgeContent(song: TranslatedSongDemo) {
         }
         item {
             LanguageSelector(
-                selected = translation?.targetLanguage.orEmpty(),
+                selected = translation.targetLanguage,
                 translations = song.translations,
-                onSelect = { targetLanguage = it },
+                onSelect = onSelectLanguage,
             )
         }
         item { SectionTitle(stringResource(R.string.lyrics_label), stringResource(R.string.lyrics_title)) }
-        if (translation != null) {
+        run {
             val translatedByIndex = translation.lines.associateBy { it.lineIndex }
             items(song.lyrics, key = DemoLyricLine::lineIndex) { original ->
-                LyricRow(original, translatedByIndex[original.lineIndex]?.text.orEmpty())
+                val line = translatedByIndex.getValue(original.lineIndex)
+                LyricRow(original, line.text, line.note)
             }
             translation.alignmentNote?.let { note -> item { AlignmentNote(note) } }
         }
         item { SectionTitle(stringResource(R.string.vocabulary_label), stringResource(R.string.vocabulary_title)) }
-        items(song.vocabulary, key = DemoVocabularyItem::term) { VocabularyCard(it) }
+        itemsIndexed(translation.vocabulary ?: song.vocabulary) { _, item -> VocabularyCard(item) }
     }
 }
 
@@ -109,8 +116,9 @@ private fun DemoHeader(song: TranslatedSongDemo) {
 }
 
 @Composable
+@OptIn(ExperimentalLayoutApi::class)
 private fun LanguageSelector(selected: String, translations: List<DemoTranslation>, onSelect: (String) -> Unit) {
-    Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+    FlowRow(Modifier.fillMaxWidth().padding(horizontal = 20.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
         translations.forEach { translation ->
             FilterChip(
                 selected = selected == translation.targetLanguage,
@@ -130,11 +138,12 @@ private fun SectionTitle(label: String, title: String) {
 }
 
 @Composable
-private fun LyricRow(original: DemoLyricLine, translated: String) {
+private fun LyricRow(original: DemoLyricLine, translated: String, note: String?) {
     Column(Modifier.padding(horizontal = 20.dp, vertical = 14.dp)) {
         Text(original.text, style = JikanleTypography.cjk)
         original.transliteration?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
         Text(translated, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(top = 8.dp))
+        note?.let { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 8.dp)) }
     }
     HorizontalDivider(Modifier.padding(horizontal = 20.dp))
 }

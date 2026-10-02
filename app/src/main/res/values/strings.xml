@@ -1,4 +1,7 @@
 <resources>
+    <string name="songbridge_open">Japonés y portugués</string>
+    <string name="songbridge_import">Abrir estudio local</string>
+    <string name="songbridge_study_note">Traducción de estudio. La adaptación cantada todavía no está evaluada.</string>
     <string name="link_unavailable">No se pudo abrir el enlace o la aplicación.</string>
     <string name="back">Volver</string>
     <string name="events_agenda">Ver agenda y reservar en Luma</string>

@@ -29,6 +29,7 @@ import co.com.jikanle.core.design.theme.JikanleTypography
 fun LessonReaderScreen(
     onOpenEvents: () -> Unit,
     onOpenFeedback: () -> Unit,
+    onOpenSongbridge: () -> Unit,
     viewModel: LessonReaderViewModel = hiltViewModel(),
 ) {
     val lesson by viewModel.lesson.collectAsStateWithLifecycle()
@@ -52,6 +53,7 @@ fun LessonReaderScreen(
                         Text(current.title, style = JikanleTypography.display)
                         current.description?.let { Muted(it) }
                         Muted(stringResource(R.string.lesson_languages, current.languageTarget.uppercase(), current.languageExplanation.uppercase()))
+                        TextButton(onClick = onOpenSongbridge) { Text(stringResource(R.string.songbridge_open)) }
                         if (progress.completed) {
                             Text(stringResource(R.string.lesson_finished), style = MaterialTheme.typography.headlineSmall)
                             Body(stringResource(R.string.lesson_finished_body))

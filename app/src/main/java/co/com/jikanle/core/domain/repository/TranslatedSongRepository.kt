@@ -4,4 +4,5 @@ import co.com.jikanle.core.domain.model.TranslatedSongDemo
 
 interface TranslatedSongRepository {
     suspend fun loadDemoSong(): Result<TranslatedSongDemo>
+    suspend fun loadLocalStudy(uri: String): Result<TranslatedSongDemo>
 }

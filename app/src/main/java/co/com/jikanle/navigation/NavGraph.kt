@@ -66,7 +66,7 @@ fun JikanleNavGraph(session: BetaSessionViewModel = hiltViewModel()) {
             }
         },
         topBar = {
-            if (currentRoute == JikanleRoutes.Auth) {
+            if (currentRoute == JikanleRoutes.Auth || currentRoute == JikanleRoutes.Songbridge) {
                 IconButton(onClick = { navController.popBackStack() }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.back)) }
             }
         },
@@ -92,6 +92,7 @@ fun JikanleNavGraph(session: BetaSessionViewModel = hiltViewModel()) {
             LessonReaderScreen(
                 onOpenEvents = { openTab(JikanleRoutes.Events) },
                 onOpenFeedback = { openTab(JikanleRoutes.Profile) },
+                onOpenSongbridge = { navController.navigate(JikanleRoutes.Songbridge) { launchSingleTop = true } },
             )
         }
         composable(JikanleRoutes.Auth) {

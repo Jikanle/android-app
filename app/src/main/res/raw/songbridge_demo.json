@@ -14,7 +14,21 @@
     { "lineIndex": 6, "text": "花ざかり", "transliteration": "hanazakari" }
   ],
   "translations": [
-    { "targetLanguage": "es", "alignmentNote": "Las siete líneas conservan el pulso original con una diferencia máxima de una unidad.", "lines": [
+    { "targetLanguage": "pt", "alignmentNote": "Rascunho de estudo, não uma versão cantada validada. 匂う admite nuances de perfume e brilho; a escolha precisa de revisão bilíngue. Sem áudio, não há tempos ou avaliação musical.", "lines": [
+      { "lineIndex": 0, "text": "Cerejeiras, cerejeiras" },
+      { "lineIndex": 1, "text": "Pelos campos, montes e povoados" },
+      { "lineIndex": 2, "text": "Até onde a vista alcança" },
+      { "lineIndex": 3, "text": "Será névoa ou serão nuvens?" },
+      { "lineIndex": 4, "text": "Perfumam a luz da manhã" },
+      { "lineIndex": 5, "text": "Cerejeiras, cerejeiras" },
+      { "lineIndex": 6, "text": "Em plena floração" }
+    ], "vocabulary": [
+      { "lineIndex": 0, "term": "さくら", "reading": "sakura", "meaning": "flor de cerejeira" },
+      { "lineIndex": 1, "term": "野山", "reading": "noyama", "meaning": "campos e montes" },
+      { "lineIndex": 3, "term": "霞", "reading": "kasumi", "meaning": "névoa primaveril" },
+      { "lineIndex": 6, "term": "花ざかり", "reading": "hanazakari", "meaning": "plena floração" }
+    ] },
+    { "targetLanguage": "es", "alignmentNote": "Traducción de estudio. Los conteos heredados son estimaciones textuales sin validar, no tiempos ni una evaluación de la adaptación cantada.", "lines": [
       { "lineIndex": 0, "text": "Cerezos, cerezos", "sourceUnits": 6, "targetUnits": 6 },
       { "lineIndex": 1, "text": "Por campos y aldeas", "sourceUnits": 7, "targetUnits": 7 },
       { "lineIndex": 2, "text": "Hasta el horizonte", "sourceUnits": 7, "targetUnits": 7 },
@@ -23,7 +37,7 @@
       { "lineIndex": 5, "text": "Cerezos, cerezos", "sourceUnits": 6, "targetUnits": 6 },
       { "lineIndex": 6, "text": "Flores en plenitud", "sourceUnits": 5, "targetUnits": 6 }
     ] },
-    { "targetLanguage": "en", "alignmentNote": "All seven lines remain within one target unit of the Japanese source.", "lines": [
+    { "targetLanguage": "en", "alignmentNote": "Study translation. Legacy counts are unvalidated text estimates, not timing or a sung-adaptation score.", "lines": [
       { "lineIndex": 0, "text": "Cherry blooms, cherry blooms", "sourceUnits": 6, "targetUnits": 6 },
       { "lineIndex": 1, "text": "Through fields and villages", "sourceUnits": 7, "targetUnits": 6 },
       { "lineIndex": 2, "text": "As far as the eye can see", "sourceUnits": 7, "targetUnits": 7 },
