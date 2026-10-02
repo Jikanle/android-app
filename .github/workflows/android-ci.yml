@@ -11,6 +11,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  research-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Test offline research and event contracts
+        run: deno test tools/events tools/research supabase/functions/translate-song/translate_test.ts
+      - name: Check offline operator commands
+        run: deno check tools/events/preview.ts tools/research/run-study.ts
+      - name: Install audio inspection tool
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Test local audio intake with synthetic WAV
+        run: python3 -m unittest discover -s tools/research -p 'test_*.py'
   build:
     runs-on: ubuntu-latest
     steps:

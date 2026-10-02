@@ -1,0 +1,16 @@
+[
+  {
+    "id": "centro-japon-uniandes",
+    "url": "https://centrodeljapon.uniandes.edu.co/page/agenda-cultural-y-academica",
+    "cadence": "weekly",
+    "adapter": "manual",
+    "automationApproved": false
+  },
+  {
+    "id": "ibraco",
+    "url": "https://www.ibraco.org.co/eventos-ibraco/",
+    "cadence": "monthly",
+    "adapter": "manual",
+    "automationApproved": false
+  }
+]
