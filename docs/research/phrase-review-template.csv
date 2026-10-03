@@ -1,0 +1,1 @@
+study_id,line_id,candidate_id,audio_sha256,start_ms,end_ms,ja_text,ja_reading,meaning_unit,ambiguity,pt_literal_gloss,pt_sung_candidate,pt_stressed_syllables,note_beat_landmarks,breath_positions,deliberate_changes,text_reviewer,music_reviewer,pedagogy_reviewer,review_status

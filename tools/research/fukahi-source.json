@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "study_id": "fukahi-ja-pt-pilot",
+  "reference_url": "https://www.youtube.com/watch?v=qmq5JVh8xhE",
+  "provider_video_id": "qmq5JVh8xhE",
+  "source": "user_supplied_reference_not_independently_verified",
+  "source_language": "ja",
+  "target_language": "pt-BR",
+  "learning_target_language": "ja",
+  "learner_explanation_language": "pt-BR",
+  "audio_sha256": null,
+  "excerpt_start_ms": null,
+  "excerpt_end_ms": null,
+  "analysis_permission": "pending_review",
+  "publication_permission": "pending_review",
+  "training_opt_in": false
+}
