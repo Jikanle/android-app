@@ -29,7 +29,7 @@ import co.com.jikanle.core.design.theme.JikanleTypography
 import co.com.jikanle.core.domain.repository.AuthState
 
 @Composable
-fun BetaScreen(onSignIn: () -> Unit, viewModel: BetaViewModel = hiltViewModel()) {
+fun BetaScreen(onSignIn: () -> Unit, onEventPreferences: () -> Unit = {}, viewModel: BetaViewModel = hiltViewModel()) {
     val auth by viewModel.authState.collectAsStateWithLifecycle()
     val sharing by viewModel.sharing.collectAsStateWithLifecycle()
     val delivery by viewModel.delivery.collectAsStateWithLifecycle()
@@ -38,6 +38,7 @@ fun BetaScreen(onSignIn: () -> Unit, viewModel: BetaViewModel = hiltViewModel())
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Text(stringResource(R.string.beta_title), style = JikanleTypography.display)
         Text(stringResource(R.string.beta_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE))
+        TextButton(onClick = onEventPreferences) { Text(stringResource(R.string.event_preferences_title)) }
         if (auth !is AuthState.Authenticated) {
             Text(stringResource(R.string.beta_sign_in_note))
             Button(onClick = onSignIn) { Text(stringResource(R.string.auth_sign_in)) }

@@ -21,7 +21,14 @@ jobs:
       - name: Test offline research and event contracts
         run: deno test tools/events tools/research supabase/functions/translate-song/translate_test.ts
       - name: Check offline operator commands
-        run: deno check tools/events/preview.ts tools/research/run-study.ts
+        run: deno check tools/events/preview.ts tools/events/import-attendance.ts tools/research/run-study.ts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated SQL test engine
+        run: npm install --prefix "$RUNNER_TEMP/sql-tests" --no-audit --no-fund @electric-sql/pglite@0.5.8
+      - name: Test SQL permissions and withdrawal in disposable Postgres
+        run: PGLITE_MODULE="$RUNNER_TEMP/sql-tests/node_modules/@electric-sql/pglite/dist/index.js" node --test tools/events/check-database.mjs
       - name: Install audio inspection tool
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Test local audio intake with synthetic WAV

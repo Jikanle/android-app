@@ -37,6 +37,7 @@ object JikanleRoutes {
     const val Auth = "auth"
     const val Profile = "profile"
     const val Songbridge = "songbridge"
+    const val EventPreferences = "event-preferences"
     const val LessonPattern = "lesson/{lessonId}"
 
     fun lesson(id: String): String = "lesson/$id"
@@ -66,7 +67,7 @@ fun JikanleNavGraph(session: BetaSessionViewModel = hiltViewModel()) {
             }
         },
         topBar = {
-            if (currentRoute == JikanleRoutes.Auth || currentRoute == JikanleRoutes.Songbridge) {
+            if (currentRoute == JikanleRoutes.Auth || currentRoute == JikanleRoutes.Songbridge || currentRoute == JikanleRoutes.EventPreferences) {
                 IconButton(onClick = { navController.popBackStack() }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.back)) }
             }
         },
@@ -99,7 +100,10 @@ fun JikanleNavGraph(session: BetaSessionViewModel = hiltViewModel()) {
             LoginScreen(onAuthenticated = { navController.popBackStack() })
         }
         composable(JikanleRoutes.Profile) {
-            BetaScreen(onSignIn = { navController.navigate(JikanleRoutes.Auth) })
+            BetaScreen(onSignIn = { navController.navigate(JikanleRoutes.Auth) }, onEventPreferences = { navController.navigate(JikanleRoutes.EventPreferences) })
+        }
+        composable(JikanleRoutes.EventPreferences) {
+            co.com.jikanle.feature.events.EventPreferencesScreen(onSignIn = { navController.navigate(JikanleRoutes.Auth) })
         }
         composable(JikanleRoutes.Songbridge) {
             SongbridgeScreen()

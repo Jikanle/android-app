@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_preferences_title">Preferencias de eventos</string>
+    <string name="event_preferences_scope">Opcional. Jikanle usa estas preferencias para los fines que autorices. No condicionan tu asistencia ni autorizan marketing o entrenamiento de modelos. Política: events-v1.</string>
+    <string name="event_languages">Idiomas para practicar</string>
+    <string name="event_interests">Intereses</string>
+    <string name="event_domains">Áreas profesionales, opcional</string>
+    <string name="event_goals">Qué buscas</string>
+    <string name="event_matching_consent">Autorizo al equipo de Jikanle a proponerme presentaciones con personas de intereses comunes. Mis datos de contacto no se comparten automáticamente.</string>
+    <string name="event_metrics_consent">Autorizo a Jikanle a usar mi asistencia verificada para medir participación y retorno a eventos.</string>
+    <string name="event_preferences_save">Guardar preferencias</string>
+    <string name="event_preferences_saved">Preferencias guardadas.</string>
+    <string name="event_preferences_withdraw">Retirar permisos de eventos</string>
+    <string name="event_preferences_withdraw_detail">Se borrarán tus etiquetas y se desactivarán las presentaciones y la medición de asistencias, incluidas las anteriores. Se conservan los registros operativos de asistencia y consentimiento. No elimina tu cuenta ni cambia los permisos de correo o WhatsApp. Para solicitar eliminación: alesanchezpov@gmail.com.</string>
+    <string name="event_preferences_withdrawn">Permisos retirados y preferencias borradas en el servidor.</string>
+    <string name="event_preferences_failed">No se confirmó el cambio en el servidor. Comprueba tu conexión y vuelve a intentarlo. Para retirar permisos también puedes escribir a alesanchezpov@gmail.com.</string>
+    <string name="event_preferences_cancel">Cancelar</string>
+    <string-array name="event_language_labels"><item>Japonés</item><item>Portugués</item><item>Español</item><item>Inglés</item><item>Coreano</item><item>Chino</item></string-array>
+    <string-array name="event_interest_labels"><item>Música</item><item>Cultura</item><item>Tecnología</item><item>Literatura</item></string-array>
+    <string-array name="event_domain_labels"><item>Artes</item><item>Educación</item><item>Ingeniería</item><item>Investigación</item></string-array>
+    <string-array name="event_goal_labels"><item>Conversación</item><item>Cultura</item><item>Música</item><item>Intercambio profesional</item></string-array>
+</resources>

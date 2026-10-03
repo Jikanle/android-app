@@ -1,9 +1,10 @@
 # Events: Collection, Connections And Repeat Attendance
 
-Updated 2026-10-02. Executable offline modules are in `tools/events/`. Shared SQL is
-a **proposal for staging**, not a live service. Android still opens the public agenda
-and external RSVP. There is no attendee preference form or check-in endpoint in the
-app yet, and no real attendance dataset has been imported in this session.
+Updated 2026-10-03. Executable offline modules are in `tools/events/`. Shared SQL is
+validated in disposable Postgres, **not deployed**. Android includes an optional
+preference/withdrawal screen; a host-only RPC and operator CLI import verified attendance.
+See [implementation and reconciliation](events-preferences-and-attendance.md).
+No real attendance dataset has been imported in this session.
 
 ## Collect From People, Not About People
 
@@ -14,13 +15,12 @@ interests and optionally professional areas and conversation goals. Use controll
 tags, with no employer, income, health, political preference or scraped social graph.
 Leaving optional questions blank must not block attendance.
 
-Three unchecked, separately revocable purposes: aggregate engagement measurement;
-human-mediated introductions; future-event contact. A fourth research/training
-consent is **not** bundled with these. `event_preferences` implements the first three
-as independent fields, plus a policy version and database-generated timestamp.
-`consent_recorded_at` represents the latest state, not an immutable consent audit.
-Store the shown consent text/version and access-limited consent receipt in the shared
-consent system before production; reconcile with Web's proposed contracts first.
+Two unchecked, separately revocable event purposes: aggregate engagement measurement
+and human-mediated introductions. Future-event contact remains owned by Web's separate
+email/WhatsApp permissions; `contact_opt_in` is reserved and false in Android writes.
+Research/training is **not** bundled. Server-owned `event_consent_history` stores changes;
+`consent_recorded_at` is the latest preference state. Recover Web's missing migration
+and review the shown `events-v1` text before production.
 
 Record one `event_participations` row per user and actual event occurrence:
 confirmed RSVP separately from host-verified check-in. For the pilot the host may
@@ -58,7 +58,7 @@ deletion request process. Do not start collecting until that process has an owne
 
 `consecutiveLanguageReturn` provides tested reference semantics. It counts distinct
 user/event pairs, excludes missing/revoked consent and never treats unverified data
-as attendance. SQL still needs execution against staging before operational use.
+as attendance. SQL passes disposable Postgres tests; hosted staging verification remains.
 
 `suggestConnections` is a deterministic, non-ML prototype using explicitly shared
 languages plus interests/professional domains, requiring **both** people to opt in.

@@ -30,6 +30,12 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
+    abstract fun bindEventPreferencesRepository(
+        impl: co.com.jikanle.core.data.repository.EventPreferencesRepositoryImpl,
+    ): co.com.jikanle.core.domain.repository.EventPreferencesRepository
+
+    @Binds
+    @Singleton
     abstract fun bindBetaRepository(impl: BetaRepositoryImpl): BetaRepository
 
     @Binds

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_preferences_title">Event preferences</string>
+    <string name="event_preferences_scope">Optional. Jikanle uses these preferences only for the purposes you allow. Attendance does not require them. They do not authorize marketing or model training. Policy: events-v1.</string>
+    <string name="event_languages">Languages to practice</string>
+    <string name="event_interests">Interests</string>
+    <string name="event_domains">Professional areas, optional</string>
+    <string name="event_goals">Your goals</string>
+    <string name="event_matching_consent">I allow the Jikanle team to suggest introductions to people with shared interests. My contact details are not shared automatically.</string>
+    <string name="event_metrics_consent">I allow Jikanle to use my verified attendance to measure event participation and return visits.</string>
+    <string name="event_preferences_save">Save preferences</string>
+    <string name="event_preferences_saved">Preferences saved.</string>
+    <string name="event_preferences_withdraw">Withdraw event permissions</string>
+    <string name="event_preferences_withdraw_detail">Your tags will be cleared and introductions and attendance measurement disabled, including past attendance. Operational attendance and consent records are retained. This does not delete your account or change email or WhatsApp permissions. To request deletion: alesanchezpov@gmail.com.</string>
+    <string name="event_preferences_withdrawn">Permissions withdrawn and preferences cleared on the server.</string>
+    <string name="event_preferences_failed">The server did not confirm this change. Check your connection and try again. You can also request withdrawal at alesanchezpov@gmail.com.</string>
+    <string name="event_preferences_cancel">Cancel</string>
+    <string-array name="event_language_labels"><item>Japanese</item><item>Portuguese</item><item>Spanish</item><item>English</item><item>Korean</item><item>Chinese</item></string-array>
+    <string-array name="event_interest_labels"><item>Music</item><item>Culture</item><item>Technology</item><item>Literature</item></string-array>
+    <string-array name="event_domain_labels"><item>Arts</item><item>Education</item><item>Engineering</item><item>Research</item></string-array>
+    <string-array name="event_goal_labels"><item>Conversation</item><item>Culture</item><item>Music</item><item>Professional exchange</item></string-array>
+</resources>
