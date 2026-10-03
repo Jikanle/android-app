@@ -62,6 +62,28 @@ Updated 2026-09-09. The mid-August target is retired. Three concrete milestones 
 
 ## Next Session
 
+### Research And Event Pilot (2026-10-02)
+
+- [x] Add Portuguese study preview, validated line ordering and debug-only private JSON import without changing the visual identity.
+- [x] Add text-only Portuguese translation contract; reject missing/reordered model output rather than claiming musical accuracy.
+- [x] Implement offline event candidate normalization, review cadence helpers, consent-aware connection suggestions and seven-day metric reference tests.
+- [x] Draft department boundaries, event-data contract and partner onboarding procedure in ADR 0004 and `docs/events-data-and-discovery.md`.
+- [x] Add local ffprobe audio intake with synthetic-WAV tests; copy the general operating plan and event guide to business Docs and Drive.
+- [x] Confirm team ownership including Alejandro/David Daza for pedagogy and Robert's cross-disciplinary audit role.
+- [ ] Review pending purpose-specific rights manifests and generation enforcement; not cleared for production.
+- [ ] Receive permitted Fukahi audio/timestamps; human JA-PT review and musical annotation before cover/video claims.
+- [ ] Reconcile event preferences/consents with Web, validate SQL and RLS in staging; nothing applied to production.
+- [x] Implement event preference/withdrawal UI and verified host attendance importer; existing click telemetry is not attendance.
+- [x] Validate migration twice and owner/host RLS, withdrawal and regrant behavior in disposable Postgres; no production deployment.
+- [x] Add MIR reading laboratory, team review protocol, source reference and tested alignment evaluator; no inferred Fukahi timestamps.
+- [ ] Recover missing Web `website_v02.sql`, validate combined staging contract, approve consent text and deletion/retention operations.
+- [ ] Test preferences on a phone with two staging accounts; review small-screen and enlarged-text layout.
+- [ ] Receive founder's public institution/account list and permission evidence; then enable one source transport and review queue.
+- [ ] Run debug study import on a phone, then complete signed Play internal testing gates.
+- [ ] Review `content_rights.sql` with Web/backend/legal and run two-identity RLS tests before any staging deployment.
+- [ ] Recruit first public-domain or directly licensed partner song; record analysis, cover, sync and training permissions separately.
+- [ ] Finish Lint in CI or on a less memory-constrained run; local debug build and unit tests passed, but the prolonged Lint run was interrupted.
+
 - Complete `docs/beta-first-install.md`: signing secrets, beta SQL, founder email enrollment and the physical-device checklist.
 - Verify `docs/beta-contract.md` with two Supabase identities, then inspect `docs/beta-metrics.sql`.
 - Treat the older week labels below as historical sequencing, not calendar deadlines; current acceptance criteria live in `docs/beta-backlog.md`.

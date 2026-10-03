@@ -20,9 +20,19 @@ The business workspace aggregates projects and is not necessarily one Git reposi
 
 ## Beta Status
 
+2026-10-03: [event preferences and verified attendance](docs/events-preferences-and-attendance.md)
+now have Android UI, shared RPCs and disposable-Postgres tests (not deployed).
+The [MIR laboratory](docs/research/MIR-LAB.md) separates tested tools from future
+audio inference; [recording and Play beta](docs/research/RECORDING-AND-BETA.md)
+documents the four departments, first Portuguese take and installation gates.
+
 Current: public events and Luma entry, guided Fuyu lesson with local progress, optional authenticated usage metrics and queued rating feedback. Audio opens an external Spotify search. Android does not play, record or score audio. Songbridge remains a development route.
 
 Not yet verified: live auth, deployed beta SQL/RLS, physical-device UI or signed Play upload. Play Console account exists per founder. Start with [the first-install guide](docs/beta-first-install.md) and [the data contract](docs/beta-contract.md).
+
+Rights-aware AI work: [content rights and fair-training policy](docs/content-rights-and-fair-training.md).
+Training and public cover generation require purpose-specific permissions. Enforcement
+changes remain under review, not cleared for production. Current Fukahi work is private research only.
 
 Actual quality checks are Kotlin compilation, Android Lint and JUnit tests. `ktlintCheck` and `detekt` are currently empty placeholder tasks.
 
@@ -62,3 +72,10 @@ Read `CLAUDE.md` for product context, `ARCHITECTURE.md` before touching feature/
 
 Contact: `alesanchezpov@gmail.com`  
 Events: https://luma.com/Jikanle?k=c
+# Research And Event Pilot
+
+Current extension: [JA-PT private study workflow](docs/research-ja-pt-pilot.md),
+[event data and partner onboarding](docs/events-data-and-discovery.md), and
+[shared contract proposal](docs/decisions/0004-research-and-event-boundaries.md).
+These distinguish executable offline prototypes from backend changes awaiting review
+and deployment. The app remains one Android module and one shared Supabase client.
