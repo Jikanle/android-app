@@ -82,7 +82,7 @@ Updated 2026-09-09. The mid-August target is retired. Three concrete milestones 
 - [ ] Run debug study import on a phone, then complete signed Play internal testing gates.
 - [ ] Review `content_rights.sql` with Web/backend/legal and run two-identity RLS tests before any staging deployment.
 - [ ] Recruit first public-domain or directly licensed partner song; record analysis, cover, sync and training permissions separately.
-- [ ] Finish Lint in CI or on a less memory-constrained run; local debug build and unit tests passed, but the prolonged Lint run was interrupted.
+- [x] Complete local debug build, 17 JVM tests and lintDebug on 2026-10-03; hosted CI and release Lint remain unverified.
 
 - Complete `docs/beta-first-install.md`: signing secrets, beta SQL, founder email enrollment and the physical-device checklist.
 - Verify `docs/beta-contract.md` with two Supabase identities, then inspect `docs/beta-metrics.sql`.
